@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>큐브이스케이프 수유점</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-container">
+        <!-- 첫 번째 화면: 방문 여부 질문 -->
+        <div class="screen active" id="screen-intro">
+            <div class="content">
+                <h1>큐브 이스케이프 수유점에<br>방문해보신적 있나요?</h1>
+                <div class="buttons">
+                    <button class="btn" onclick="goToForm()">O<span>설명 스킵</span></button>
+                    <button class="btn" onclick="startGuide()">X<span>설명 보기</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 필독 섹션 ========== -->
+        <div class="screen" id="guide-title">
+            <div class="content guide-content">
+                <div class="guide-badge">CUBE ESCAPE SUYU</div>
+                <h1 class="guide-main-title">필 독</h1>
+                <p class="guide-subtitle">입장 전 꼭 확인해주세요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <div class="screen" id="guide-1">
+            <div class="content guide-content">
+                <div class="guide-step">결제 전</div>
+                <div class="guide-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <h2>휴대폰 및 전자기기</h2>
+                <p class="guide-text"><strong class="highlight">반입금지</strong> 물품입니다</p>
+                <p class="guide-desc">이 점을 고려하여 입장 결정해 주시기 바랍니다.</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <div class="screen" id="guide-2">
+            <div class="content guide-content">
+                <div class="guide-step">결제 전</div>
+                <div class="guide-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <h2>폐쇄공포증 / 임산부</h2>
+                <p class="guide-text">방탈출카페 특성상<br><strong class="highlight">한 공간 안에 갇혀</strong> 있으며<br><strong class="highlight">놀랄 수 있습니다</strong></p>
+                <p class="guide-desc">이 부분을 고려하여 입장 결정해 주시기 바랍니다.</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <div class="screen" id="guide-3">
+            <div class="content guide-content">
+                <div class="guide-step">입장 전</div>
+                <div class="guide-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <h2>개인정보 동의서 작성</h2>
+                <div class="guide-list">
+                    <div class="list-item">
+                        <span class="num">1</span>
+                        <span>입장과 테마 내용 <strong>보안 유지</strong>에 대한 동의</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="num">2</span>
+                        <span>테마 내부 <strong>기물 파손 및 분실</strong> 시 연락처 제공</span>
+                    </div>
+                </div>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <div class="screen" id="guide-4">
+            <div class="content guide-content">
+                <div class="guide-step">플레이 중</div>
+                <div class="guide-icon"><i class="fa-solid fa-ban"></i></div>
+                <h2>중도 포기 시</h2>
+                <p class="guide-text"><strong class="highlight-red">환불이 불가능</strong>합니다</p>
+                <p class="guide-desc">고객님의 자의에 의한 중도 포기에 해당됩니다.</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- ========== 주의사항 안내 섹션 ========== -->
+        <div class="screen" id="notice-title">
+            <div class="content guide-content">
+                <div class="guide-badge">CUBE ESCAPE SUYU</div>
+                <h1 class="guide-main-title notice-color">주의사항 안내</h1>
+                <p class="guide-subtitle">플레이 전 꼭 숙지해주세요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 1: 반입금지 -->
+        <div class="screen" id="notice-1">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">반입 금지</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                <h2>휴대폰, 스마트워치, 화기류</h2>
+                <p class="guide-text"><strong class="highlight-yellow">반입 금지</strong>입니다</p>
+                <p class="guide-desc">휴대폰은 <strong>무음</strong>으로 사물함에 보관해주세요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 2: 힘으로 X -->
+        <div class="screen" id="notice-2">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">플레이 방법</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-hand"></i></div>
+                <h2>힘으로 하는게 없어요!</h2>
+                <p class="guide-text">테마 파손 시<br><strong class="highlight-red">손해배상</strong>할 수도 있어요!</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 3: 천장/벽 -->
+        <div class="screen" id="notice-3">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">플레이 방법</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-volume-high"></i></div>
+                <h2>천장, 옆 벽면 가격 시</h2>
+                <p class="guide-text"><strong class="highlight-yellow">옆방에 피해</strong>가 가요!</p>
+                <p class="guide-desc">지나친 소음 또는 장난은 자제 부탁드립니다</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 4: 폐쇄공포증/임산부 -->
+        <div class="screen" id="notice-4">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">사전 안내</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-heart"></i></div>
+                <h2>폐쇄공포증, 임산부</h2>
+                <p class="guide-text"><strong class="highlight-yellow">직원에게 미리</strong> 말해주세요!</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 5: 힌트 -->
+        <div class="screen" id="notice-5">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">힌트 시스템</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h2>힌트는 힌트폰으로 무제한!</h2>
+                <div class="guide-list">
+                    <div class="list-item">
+                        <span class="num" style="background:#D4A853">✓</span>
+                        <span>힌트 개수 상관없이 인화사진 촬영</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="num" style="background:#D4A853">📷</span>
+                        <span>기본 1장 / 4인 이상 2장</span>
+                    </div>
+                </div>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 6: 보안유지 -->
+        <div class="screen" id="notice-6">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">특급 기밀!!</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-user-secret"></i></div>
+                <h2>테마 내용 보안유지</h2>
+                <p class="guide-text">방탈출이 끝나면<br>홀 내부에서도 <strong class="highlight-yellow">보안유지</strong> 부탁드립니다!</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 7: 인터폰 -->
+        <div class="screen" id="notice-7">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">문의사항</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-phone"></i></div>
+                <h2>방 안 인터폰 이용</h2>
+                <p class="guide-text">수화기를 들고<br>버튼이 있다면 <strong class="highlight-yellow">눌러주세요</strong></p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 8: CCTV -->
+        <div class="screen" id="notice-8">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">안전 안내</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-video"></i></div>
+                <h2>CCTV 녹화 중</h2>
+                <p class="guide-text">손님의 <strong class="highlight-yellow">안전을 위해</strong><br>녹화하고 있어요!</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 9: 진행률 -->
+        <div class="screen" id="notice-9">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">진행률 안내</div>
+                <div class="guide-icon notice-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <h2>진행률 60% 이하 시</h2>
+                <p class="guide-text">테마 종료 시점 기준<br><strong class="highlight-red">뒷 내용 설명이 불가능</strong>합니다</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 주의사항 10: 직원용 자물쇠 -->
+        <div class="screen" id="notice-10">
+            <div class="content guide-content">
+                <div class="guide-step notice-step">자물쇠 안내</div>
+                <div class="prohibit-symbol"></div>
+                <h2>이 표시는 직원용 자물쇠</h2>
+                <p class="guide-text"><strong class="highlight-red">풀지 말아주세요!</strong></p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- ========== 힌트시스템 안내 섹션 ========== -->
+        <div class="screen" id="hint-title">
+            <div class="content guide-content">
+                <div class="guide-badge">CUBE ESCAPE SUYU</div>
+                <h1 class="guide-main-title hint-color">힌트시스템 안내</h1>
+                <p class="guide-subtitle">QR코드로 힌트를 받아보세요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 1: 힌트폰 화면 소개 -->
+        <div class="screen" id="hint-1">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 1</div>
+                <h2>힌트폰 화면은 이렇게 생겼어요</h2>
+                <div class="hint-phone-ui">
+                    <div class="hint-timer">00:00:00</div>
+                    <div class="hint-buttons">
+                        <div class="hint-btn">QR Code</div>
+                        <div class="hint-btn">Number Code</div>
+                    </div>
+                    <div class="hint-count">사용한 힌트 수 0</div>
+                </div>
+                <p class="guide-desc">게임 시작 시 타이머가 작동합니다</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 2: QR Code 버튼 -->
+        <div class="screen" id="hint-2">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 2</div>
+                <h2><strong class="highlight-blue">QR Code</strong> 버튼을 눌러주세요</h2>
+                <div class="hint-phone-ui">
+                    <div class="hint-timer">00:05:32</div>
+                    <div class="hint-buttons">
+                        <div class="hint-btn active" style="background:rgba(46,204,113,0.3);">QR Code</div>
+                        <div class="hint-btn">Number Code</div>
+                    </div>
+                    <div class="hint-count">사용한 힌트 수 0</div>
+                </div>
+                <p class="guide-desc">QR코드로 힌트를 요청할 수 있어요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 3: QR 스캔 -->
+        <div class="screen" id="hint-3">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 3</div>
+                <div class="guide-icon hint-icon"><i class="fa-solid fa-qrcode"></i></div>
+                <h2>방 안의 QR코드를 스캔!</h2>
+                <p class="guide-text">힌트폰 카메라로<br><strong class="highlight-blue">QR코드</strong>를 스캔해주세요</p>
+                <p class="guide-desc">스캔하면 힌트 채팅방에 연결됩니다</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 4: 메시지 보내기 -->
+        <div class="screen" id="hint-4">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 4</div>
+                <div class="guide-icon hint-icon"><i class="fa-solid fa-paper-plane"></i></div>
+                <h2>막힌 곳을 메시지로 보내주세요</h2>
+                <p class="guide-text">"<strong class="highlight-blue">어디서 막혔는지</strong>" 알려주시면<br>맞춤 힌트를 드려요!</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 5: 힌트 무제한 -->
+        <div class="screen" id="hint-5">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 5</div>
+                <h2>힌트는 <strong class="highlight-blue">무제한!</strong></h2>
+                <div class="hint-phone-ui">
+                    <div class="hint-timer">00:32:15</div>
+                    <div class="hint-buttons">
+                        <div class="hint-btn">QR Code</div>
+                        <div class="hint-btn">Number Code</div>
+                    </div>
+                    <div class="hint-count">사용한 힌트 수 <strong style="color:#3366FF;font-size:1.2rem;">5</strong></div>
+                </div>
+                <p class="guide-desc">부담 갖지 마시고 편하게 물어보세요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 6: 사진 촬영 영향 없음 -->
+        <div class="screen" id="hint-6">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 6</div>
+                <div class="guide-icon hint-icon"><i class="fa-solid fa-camera"></i></div>
+                <h2>힌트 개수와 사진 촬영은 무관!</h2>
+                <p class="guide-text">힌트를 많이 써도<br><strong class="highlight-blue">인화사진 촬영</strong>은 동일해요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 7: 기본 사진 안내 -->
+        <div class="screen" id="hint-7">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 7</div>
+                <div class="guide-icon hint-icon"><i class="fa-solid fa-image"></i></div>
+                <h2>인화사진 기본 제공</h2>
+                <div class="guide-list">
+                    <div class="list-item">
+                        <span class="num" style="background:#3366FF">📷</span>
+                        <span>기본 <strong style="color:#3366FF">1장</strong> 제공</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="num" style="background:#3366FF">👥</span>
+                        <span>4인 이상 <strong style="color:#3366FF">2장</strong> 제공</span>
+                    </div>
+                </div>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 8: 빠른 응답 -->
+        <div class="screen" id="hint-8">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 8</div>
+                <div class="guide-icon hint-icon"><i class="fa-solid fa-clock"></i></div>
+                <h2>힌트는 빠르게 답변드려요</h2>
+                <p class="guide-text">보통 <strong class="highlight-blue">1분 이내</strong>로 답변!</p>
+                <p class="guide-desc">조금만 기다려주세요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 9: 구체적 질문 -->
+        <div class="screen" id="hint-9">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 9</div>
+                <div class="guide-icon hint-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                <h2>구체적으로 물어보세요</h2>
+                <p class="guide-text">"<strong class="highlight-blue">이 자물쇠 어떻게 열어요?</strong>"<br>처럼 구체적으로 질문하면 더 정확해요!</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 힌트 10: 마무리 -->
+        <div class="screen" id="hint-10">
+            <div class="content guide-content">
+                <div class="guide-step hint-step">STEP 10</div>
+                <div class="guide-icon hint-icon"><i class="fa-solid fa-thumbs-up"></i></div>
+                <h2>힌트 시스템 준비 완료!</h2>
+                <p class="guide-text">이제 <strong class="highlight-blue">즐거운 탈출</strong>을 시작하세요!</p>
+                <p class="guide-desc">막히면 언제든 힌트를 요청하세요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- ========== 자물쇠 안내 섹션 ========== -->
+        <div class="screen" id="lock-title">
+            <div class="content guide-content">
+                <div class="guide-badge">CUBE ESCAPE SUYU</div>
+                <h1 class="guide-main-title lock-color">자물쇠 안내</h1>
+                <p class="guide-subtitle">자물쇠 여는 방법을 알려드릴게요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 자물쇠 1: 방향 자물쇠 -->
+        <div class="screen" id="lock-1">
+            <div class="content guide-content">
+                <div class="guide-step lock-step">방향 자물쇠</div>
+                <div class="lock-image"><img src="lock-direction.png" alt="방향 자물쇠"></div>
+                <h2>상하좌우 방향을 순서대로 입력!</h2>
+                <p class="guide-text">자물쇠를 <strong class="highlight-purple">아래로 당기면</strong> 열려요</p>
+                <p class="guide-desc">은색 고리 <strong>3번</strong> 누르면 초기화 · <strong class="highlight-red">튕기면 안돼요!</strong></p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 자물쇠 2: 숫자 자물쇠 -->
+        <div class="screen" id="lock-2">
+            <div class="content guide-content">
+                <div class="guide-step lock-step">숫자 자물쇠</div>
+                <div class="lock-image"><img src="lock-number.png" alt="숫자 자물쇠"></div>
+                <h2><strong class="highlight-red">빨간색 선</strong>에 숫자를 맞춰주세요</h2>
+                <p class="guide-text"><strong class="highlight-purple">위쪽부터 아래로</strong> 숫자 맞추기</p>
+                <p class="guide-desc">당기면서 돌리면 안 돌아가요!</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 자물쇠 3: 마스터 자물쇠 -->
+        <div class="screen" id="lock-3">
+            <div class="content guide-content">
+                <div class="guide-step lock-step">마스터 자물쇠</div>
+                <div class="lock-image"><img src="lock-master.png" alt="마스터 자물쇠"></div>
+                <h2>"마스터" 써있는 부분 찾기!</h2>
+                <p class="guide-text"><strong class="highlight-purple">왼쪽 → 오른쪽</strong>으로 맞추고 당기기</p>
+                <p class="guide-desc">옆이나 위로 당겨도 잘 열려요</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 자물쇠 4: 4버튼 자물쇠 -->
+        <div class="screen" id="lock-4">
+            <div class="content guide-content">
+                <div class="guide-step lock-step">4버튼 자물쇠</div>
+                <div class="lock-image"><img src="lock-4button.png" alt="4버튼 자물쇠"></div>
+                <h2>숫자 버튼을 누르고</h2>
+                <p class="guide-text">아래 튀어나온 부분을 <strong class="highlight-purple">옆으로 밀어</strong> 열기</p>
+                <p class="guide-desc" style="color:#555;">우든편, 집착 테마</p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 자물쇠 5: 금고 -->
+        <div class="screen" id="lock-5">
+            <div class="content guide-content">
+                <div class="guide-step lock-step">금고 <span style="font-weight:400; font-size:0.85rem;">(마녀의 꿈, 사라진 천사들 테마)</span></div>
+                <div class="safe-ui">
+                    <div class="safe-handle"></div>
+                    <div class="safe-keypad">
+                        <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+                        <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+                        <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+                        <div class="key">C</div><div class="key">0</div><div class="key">E</div>
+                    </div>
+                </div>
+                <p class="guide-text">비밀번호를 입력 후 <strong style="color:#2D5A4A;">E버튼</strong> 누른 후<br>초록색 불이 들어오면 손잡이를 <strong class="highlight-purple">오른쪽으로 돌려</strong> 열기<br><strong style="color:#2D5A4A;">C버튼</strong>으로 초기화 가능</p>
+                <p class="guide-desc"><strong class="highlight-red">주의:</strong> 횟수 3회 - 초과 시 <strong class="highlight-red">5분간 잠깁니다.</strong></p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 자물쇠 6: 도어락 -->
+        <div class="screen" id="lock-6">
+            <div class="content guide-content">
+                <div class="guide-step lock-step">도어락 <span style="font-weight:400; font-size:0.85rem;">(더 큐브, 사라진 천사들 테마)</span></div>
+                <div class="doorlock-ui">
+                    <div class="doorlock-speaker">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="doorlock-keypad">
+                        <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+                        <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+                        <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+                        <div class="key">x</div><div class="key">0</div><div class="key">#</div>
+                    </div>
+                </div>
+                <p class="guide-text">비밀번호를 입력 후 <strong class="highlight-purple">#버튼</strong> 누르기</p>
+                <p class="guide-desc">횟수 제한 <strong style="color:#2D5A4A;">X</strong></p>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
+        </div>
+
+        <!-- 완료 화면 -->
+        <div class="screen" id="guide-end">
+            <div class="content guide-content">
+                <div class="guide-icon"><i class="fa-solid fa-heart"></i></div>
+                <h2>안전하고 즐거운 방탈출 문화를 위해<br>최선을 다하겠습니다</h2>
+                <p class="guide-brand">CUBE ESCAPE 수유점</p>
+                <div class="buttons" style="margin-top: 40px;">
+                    <button class="btn" onclick="goToForm()">다음으로</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,674 @@
+@font-face {
+    font-family: 'JikjiGothic';
+    src: url('JikjiGothic-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #D9D9D9;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'JikjiGothic', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+.video-container {
+    width: 100vw;
+    height: 100vh;
+    background: #D9D9D9;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content {
+    text-align: center;
+}
+
+h1 {
+    color: #222;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+h2 {
+    color: #222;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+p {
+    color: #444;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.buttons {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.btn {
+    background: #333;
+    border: none;
+    color: #fff;
+    padding: 20px 50px;
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border-radius: 16px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.btn span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.btn:hover {
+    background: #555;
+}
+
+.btn:active {
+    background: #666;
+    transform: scale(0.98);
+}
+
+/* 상단 탭 네비게이션 */
+.section-tabs {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.section-tab {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.section-tab:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.section-tab:active {
+    background: #ddd;
+    transform: scale(0.97);
+}
+
+.section-tab.active {
+    background: #333;
+    color: #fff;
+    font-weight: 600;
+}
+
+.section-tab.active:hover,
+.section-tab.active:active {
+    background: #444;
+}
+
+/* 가이드 스타일 */
+.guide-content {
+    padding: 40px;
+}
+
+.guide-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 25px;
+    color: #555;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.guide-main-title {
+    font-size: 5rem;
+    font-weight: 800;
+    color: #2D5A4A;
+    margin-bottom: 20px;
+    letter-spacing: 20px;
+}
+
+.guide-main-title.notice-color {
+    color: #D4A853;
+    letter-spacing: 10px;
+}
+
+.guide-subtitle {
+    color: #555;
+    font-size: 1.2rem;
+}
+
+.guide-step {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #2D5A4A;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    border-radius: 25px;
+}
+
+.notice-step {
+    background: #D4A853;
+}
+
+.hint-step {
+    background: #3366FF;
+}
+
+.guide-icon {
+    font-size: 4rem;
+    color: #2D5A4A;
+    margin-bottom: 30px;
+}
+
+.notice-icon {
+    color: #D4A853;
+}
+
+.hint-icon {
+    color: #3366FF;
+}
+
+.guide-main-title.hint-color {
+    color: #3366FF;
+    letter-spacing: 5px;
+}
+
+.highlight-blue {
+    color: #3366FF;
+    font-weight: 700;
+}
+
+/* 힌트폰 UI 모의 화면 */
+.hint-phone-ui {
+    background: #1a1a1a;
+    border: 3px solid #333;
+    border-radius: 24px;
+    padding: 30px 50px;
+    margin: 20px auto;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hint-timer {
+    font-family: 'JikjiGothic', monospace;
+    font-size: 3rem;
+    color: #e74c3c;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+}
+
+.hint-buttons {
+    display: flex;
+    border: 2px solid #2D5A4A;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.hint-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: transparent;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    cursor: default;
+}
+
+.hint-btn:first-child {
+    border-right: 1px solid #2D5A4A;
+}
+
+.hint-btn.active {
+    background: rgba(45, 90, 74, 0.3);
+}
+
+.hint-count {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.hint-arrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-280px);
+    color: #2ecc71;
+    font-size: 2rem;
+    animation: arrowPulse 1s infinite;
+}
+
+@keyframes arrowPulse {
+    0%, 100% { opacity: 1; transform: translateX(-280px); }
+    50% { opacity: 0.5; transform: translateX(-270px); }
+}
+
+.hint-step-number {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 4rem;
+    font-weight: 900;
+    color: #2ecc71;
+}
+
+/* 자물쇠 안내 섹션 */
+.lock-step {
+    background: #2D5A4A;
+}
+
+.lock-icon {
+    color: #2D5A4A;
+}
+
+.guide-main-title.lock-color {
+    color: #2D5A4A;
+    letter-spacing: 8px;
+}
+
+.highlight-purple {
+    color: #2D5A4A;
+    font-weight: 700;
+}
+
+.lock-image {
+    margin-bottom: 25px;
+}
+
+.lock-image img {
+    max-height: 180px;
+    width: auto;
+}
+
+
+.guide-icon i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.guide-text {
+    font-size: 1.8rem;
+    color: #222;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.guide-desc {
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.guide-desc strong {
+    color: #f39c12;
+}
+
+.highlight {
+    color: #2D5A4A;
+    font-weight: 700;
+}
+
+.highlight-red {
+    color: #E05252;
+    font-weight: 700;
+}
+
+.highlight-yellow {
+    color: #D4A853;
+    font-weight: 700;
+}
+
+.guide-list {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.3rem;
+    line-height: 1.6;
+}
+
+.list-item .num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: #2D5A4A;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.list-item strong {
+    color: #2D5A4A;
+}
+
+.guide-brand {
+    color: #2D5A4A;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.lock-symbol {
+    font-size: 3rem;
+    margin-top: 20px;
+}
+
+/* 금지 표시 */
+.prohibit-symbol {
+    width: 120px;
+    height: 120px;
+    border: 12px solid #E05252;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto 30px;
+}
+
+.prohibit-symbol::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 12px;
+    background: #E05252;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(-45deg);
+    border-radius: 6px;
+}
+
+/* 프로그레스 바 */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.progress {
+    height: 100%;
+    background: #2D5A4A;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* 금고 UI */
+.safe-ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 25px 30px;
+    margin: 20px auto;
+    max-width: 420px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.safe-handle {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.safe-handle::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 5px;
+    background: #fff;
+    transform: rotate(-45deg);
+}
+
+.safe-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-left: 20px;
+}
+
+.safe-keypad .key {
+    width: 38px;
+    height: 38px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* 도어락 UI */
+.doorlock-ui {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 20px 30px 25px;
+    margin: 20px auto;
+    max-width: 200px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.doorlock-speaker {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+    padding: 0 20px;
+}
+
+.doorlock-speaker span {
+    height: 4px;
+    background: #555;
+    border-radius: 2px;
+}
+
+.doorlock-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.doorlock-keypad .key {
+    width: 42px;
+    height: 42px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* 반응형 - 아이패드 및 태블릿 */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+    }
+
+    .guide-main-title {
+        font-size: 4rem;
+        letter-spacing: 15px;
+    }
+
+    .guide-icon {
+        font-size: 3.5rem;
+    }
+
+    .guide-text {
+        font-size: 1.5rem;
+    }
+
+    .guide-desc {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 18px 45px;
+        font-size: 1.8rem;
+    }
+
+    .section-tabs {
+        top: 20px;
+        gap: 8px;
+    }
+
+    .section-tab {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* 반응형 - 모바일 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .guide-main-title {
+        font-size: 2.5rem;
+        letter-spacing: 8px;
+    }
+
+    .guide-icon {
+        font-size: 2.5rem;
+    }
+
+    .guide-text {
+        font-size: 1.2rem;
+    }
+
+    .guide-desc {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 15px 35px;
+        font-size: 1.5rem;
+    }
+
+    .section-tabs {
+        top: 15px;
+        gap: 6px;
+    }
+
+    .section-tab {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .guide-content {
+        padding: 30px 20px;
+    }
+
+    .lock-image img {
+        max-height: 140px;
+    }
+
+    .hint-phone-ui {
+        padding: 20px 30px;
+        max-width: 320px;
+    }
+
+    .hint-timer {
+        font-size: 2rem;
+    }
+
+    .safe-ui {
+        padding: 20px;
+        max-width: 350px;
+    }
+
+    .doorlock-ui {
+        max-width: 160px;
+    }
+}
