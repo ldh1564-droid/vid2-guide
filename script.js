@@ -139,12 +139,9 @@ function updateTabs(screenId) {
     }
 }
 
-// 구글폼 URL
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScsKxOIhB1bLY5W7WLLn0FCP41Q6X_NGpx_9r1UXLS5ozjgkA/viewform';
-
-// 구글폼으로 이동
+// 폼 페이지로 이동
 function goToForm() {
-    window.location.href = GOOGLE_FORM_URL;
+    window.location.href = 'form.html';
 }
 
 // 화면 전환 함수

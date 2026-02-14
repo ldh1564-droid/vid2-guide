@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>주의사항 동의 서약서 - 큐브이스케이프 수유점</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background: #f0f0f0;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-frame {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2D5A4A;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #1e3d32;
+            transform: translateX(-50%) scale(1.05);
+        }
+        .back-btn:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <iframe
+            class="form-frame"
+            src="https://docs.google.com/forms/d/e/1FAIpQLScsKxOIhB1bLY5W7WLLn0FCP41Q6X_NGpx_9r1UXLS5ozjgkA/viewform?embedded=true"
+            frameborder="0">
+            로드 중...
+        </iframe>
+    </div>
+    <button class="back-btn" onclick="location.href='index.html'">주의사항 안내로 돌아가기</button>
+</body>
+</html>
