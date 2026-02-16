@@ -139,7 +139,7 @@ function updateTabs(screenId) {
 
 // 폼 페이지로 이동
 function goToForm() {
-    window.location.href = 'https://forms.gle/x4HiUYZVQVdgJ6j87';
+    window.location.href = 'form.html';
 }
 
 // 화면 전환 함수
